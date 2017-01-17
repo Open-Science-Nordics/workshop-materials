@@ -1,0 +1,43 @@
+---
+title: "Mirroreum and EUBON R-packages"
+author: "Presenter: Markus Skyttner"
+date: "January 25, 2017"
+output: 
+  ioslides_presentation:
+    smaller: false
+    transition: slower
+    logo: fig/eubon.png
+---
+
+##    
+
+![](fig/eubon-banner.png)
+
+    R in Biodiversity Analysis: rOpenSci for all
+    Stockholm, Sweden, 24th-25th Jan 2016
+    
+    Jan 25th 09:00 - 09:30
+    
+ 		"Mirroreum and EUBON R-packages"
+    
+    Keyboard shortcuts for presentation viewing mode:
+
+    'f' enable fullscreen mode 
+    'w' toggle widescreen mode
+    'o' enable overview mode
+    'h' enable code highlight mode
+    'p' show presenter notes
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## EUBON and Mirroreum
+
+- The challenge - WP 1 - 8 and systems integration
+- Integration of workflows and processes across work packages
+- Practical challenges using a traditional mindset
+
+- Mirroreum: Just go to a web page, log in and get a platform for reproducible open research that supports all your needs?
+
+## TODO - work on these materials

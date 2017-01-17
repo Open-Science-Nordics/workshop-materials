@@ -1,0 +1,70 @@
+---
+title: "R for scientific computation and biodiversity analysis"
+author: "Presenter: Markus Skyttner"
+date: "January 24, 2017"
+output: 
+  ioslides_presentation:
+    smaller: false
+    transition: slower
+    logo: fig/eubon.png
+---
+
+##    
+
+![](fig/eubon-banner.png)
+
+    R in Biodiversity Analysis: rOpenSci for all
+    Stockholm, Sweden, 24th-25th Jan 2016
+    
+    Jan 24th 09:10 - 09:40 
+    
+ 		"R for scientific computation and biodiversity analysis"
+    
+    Keyboard shortcuts for presentation viewing mode:
+
+    'f' enable fullscreen mode 
+    'w' toggle widescreen mode
+    'o' enable overview mode
+    'h' enable code highlight mode
+    'p' show presenter notes
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Scientific Computations
+
+- FP - Functional Programming - focus on VERBs not NOUNs, less of side-effects and state contrasting with Object Oriented paradigm where focus is on NOUNs not VERBs and the data and algorithms often carries a lot of state and side-effects of one method to other objects in the system are often plenty and difficult to control and understand
+- Well geared fo executing computations in parallel at scale
+
+## Biodiversity Analysis
+
+- More than just computations - the whole narrative
+- Involves several reproducible steps:
+	- processing data from different sources
+	- modelling (computations)
+	- presenting results, enabling peer-review to build trust in results
+
+## Modus Operandum
+	
+- Reproducible Open Research
+	- http://swcarpentry.github.io/r-novice-gapminder/
+- Good Enough Practices in Software Carpentry
+	- https://swcarpentry.github.io/good-enough-practices-in-scientific-computing/
+	- https://software-carpentry.org/lessons/
+	- http://swcarpentry.github.io/r-novice-inflammation/
+	- http://swcarpentry.github.io/r-novice-gapminder/
+
+## Open Source Toolbox
+
+- Docker - for running anything anywhere
+- ROpenSci-packages - for Biodiversity Analysis tools
+- OpenCPU - for exposing data as a service
+- Shiny - for providing a web based interactive user interface
+
+## What is the relevance of... ?
+
+- bookdown
+- figshare
+- rgbif
+- dryad

@@ -1,21 +1,12 @@
-# workshop-materials
-
-This repo contains:
-
-Exercises, demonstrations and other relevant workshop materials
+This repo contains the talks demonstrating specific functionality and also corresponding exercises along with other relevant workshop materials.
 
 # Programme
 
 Time and place is at the Swedish Museum of Natural History on Day 1, January 24, 2017 and Day 2, January 25, 2017.
 
-- 13:00 - 16:30 *Demonstrations/Exercises*
-- 14:30 - 15:00 *Coffee/Tea served at 14:30*
+The afternoons at the end of the two days from 13:00 - 16:30 is planned for *Demonstrations and Exercises* with a *Coffee/Tea* served at 14:30-15:00. This means two blocks of 1.5 h are available on each day...
 
-TODO: please suggest programme details
-
-2 blocks of 1.5 h are available on each day...
-
-Can be split into dual 45-minute sessions:
+A suggested programme can therefore be split into dual 45-minute sessions:
 
 ## Day 1
 
@@ -33,6 +24,20 @@ Can be split into dual 45-minute sessions:
 - 15:00 - 15:45 * Session 7 *
 - 15:45 - 16:30 * Session 8 *
 
+# Content and Topics
+
+## Audience
+
+For the workshop we have approximately one third of the people attending representing a couple of companies (Kamishi AB - a mix of computational biology and financial markets focus, Greensway AB - appears to be a consultancy providing qualified Ecology planning services, Öresundsfonden - protects the Baltic Sea, competence in the unique marine environment there).
+
+The rest of the participants stems from various European public sector educational institutions (Stockholm University, Swedish Museum of Natural History, Lund University, Royal Botanic Gardens Kew, Jagiellonian University). It seems that the following topics may be of interest to this audience:
+
+- Medicinal Plant Names used in virtual herbaria
+- Botanical Phylogeny - modern ways to build botanical taxonomies
+- Swedish Bird Survey - bird population size and distribution and long term trends, bird recoveries
+- Investigating primary succession on freshly deglaciated Arctic areas involving particularly lichens and bryophytes
+- Evidence based conservation and quantifying trends in butterfly abundance using TRIM indices 
+- Choropleth graphs based on ArcGIS shapefile for fish populations 
 
 ## Exercises & Demonstrations
 
