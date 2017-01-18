@@ -4,26 +4,6 @@ This repo contains the talks demonstrating specific functionality and also corre
 
 Time and place is at the Swedish Museum of Natural History on Day 1, January 24, 2017 and Day 2, January 25, 2017.
 
-The afternoons at the end of the two days from 13:00 - 16:30 is planned for *Demonstrations and Exercises* with a *Coffee/Tea* served at 14:30-15:00. This means two blocks of 1.5 h are available on each day...
-
-A suggested programme can therefore be split into dual 45-minute sessions:
-
-## Day 1
-
-- 13:00 - 13:45 * Session 1 *
-- 13:45 - 14:30 * Session 2 *
-- 14:30 - 15:00 * Coffee/Tea *
-- 15:00 - 15:45 * Session 3 *
-- 15:45 - 16:30 * Session 4 *
-
-## Day 2
-
-- 13:00 - 13:45 * Session 5 *
-- 13:45 - 14:30 * Session 6 *
-- 14:30 - 15:00 * Coffee/Tea *
-- 15:00 - 15:45 * Session 7 *
-- 15:45 - 16:30 * Session 8 *
-
 # Content and Topics
 
 ## Audience
@@ -41,7 +21,33 @@ The rest of the participants stems from various European public sector education
 
 ## Exercises & Demonstrations
 
-We could arrange Session 1 first with some Lecture/Demos then Session 2 follows up with Exercises, interleaving demos and exercises for different topics, etc...
+The afternoons at the end of the two days from 13:00 - 16:30 is planned for *Demonstrations and Exercises* with a *Coffee/Tea* served at 14:30-15:00. This means two blocks of 1.5 h are available on each day...
+
+We could arrange to interleave demos/letures/talks with exercises for the different topics... Session 1 would come first with some Lecture/Demos then Session 2 follows up with Exercises etc... A suggested programme could be split into dual 45-minute sessions like so:
+
+### Day 1
+
+- 13:00 - 13:45 * Session 1 - rOpenSci for scientific computation and biodiversity analysis *
+- 13:45 - 14:30 * Session 2 - exercises *
+- 14:30 - 15:00 * Coffee/Tea *
+- 15:00 - 15:45 * Session 3 - "Ignorance scores for primary biodiversity data"*
+- 15:45 - 16:30 * Session 4 - exercises *
+
+The suggestion here is to start Session 1 on the topic of "R for scientific computation and biodiversity analysis using rOpenSci packages" with some demos and lectures / walkthrough of relevant use case on topics recommended/suggested by Scott C, then Session 2 would follow with exercises related to this topic etc in that fashion.
+
+Session 3 could be on topic "Ignorance scores for primary biodiversity data" from Alejandro Ruete with some demos. This is followed by session 4 which provides some hands-on exercises using the package and allowing people to work on an exercise involving a concrete use case.
+
+### Day 2
+
+- 13:00 - 13:45 * Session 5 - "Atlas of Living Australia and ALA4R"*
+- 13:45 - 14:30 * Session 6 - exercises *
+- 14:30 - 15:00 * Coffee/Tea *
+- 15:00 - 15:45 * Session 7 - "speciesgeocodeR and sampbias: Dealing with coordinate errors and sampling biases in biodiversity data"*
+- 15:45 - 16:30 * Session 8 - exercises *
+ 
+Session 5 could start with a lecture and demo of "Atlas of Living Australia and ALA4R" from Ben R. Then Session 6 would follow with exercises based on using ALA4R in practice.
+
+Session 7 could start with a presentation and lecture based on "speciesgeocodeR and sampbias: Dealing with coordinate errors and sampling biases in biodiversity data" from A Zizka. Then Session 8 would follow with hands-on exercises involving use of these tools.
 
 ### Infrastructure
 
@@ -55,20 +61,6 @@ I am planning on building up-to-date images based on that, which can be pulled w
 
 	docker pull raquamaps/mirroeum
 	docker pull raquamaps/shiny
-
-### Day 1
-
-One idea could be to start Session 1 on the topic of "R for scientific computation and biodiversity analysis using rOpenSci packages" with some demos and lectures / walkthrough of relevant use case on topics recommended/suggested by Scott C, then Session 2 would follow with exercises related to this topic.
-
-Session 3 could be on topic "Ignorance scores for primary biodiversity data" from Alejandro Ruete with some demos. This is followed by session 4 which provides some hands-on exercises using the package and allowing people to work on an exercise involving a concrete use case.
-
-### Day 2
-
-Session 5 could start with a lecture and demo of "Atlas of Living Australia and ALA4R" from Ben R. Then Session 6 would follow with exercises based on using ALA4R in practice.
-
-Session 7 could start with a presentation and lecture based on "speciesgeocodeR and sampbias" from A Zizka. Then Session 8 would follow with hands-on exercises involving use of these tools
-
-
 
 
 
