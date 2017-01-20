@@ -37,7 +37,7 @@ Three ways to get necessary software
 
 The simplest approach for getting everything is to log in with your credentials to:
 
--   <https://mirroeum.dina-web.net>
+-   <https://mirroreum.dina-web.net> (NB: NOT AVAILABLE YET)
 
 You can also install everything you need on your laptop. This involves several steps, including:
 

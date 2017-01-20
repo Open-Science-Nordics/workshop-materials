@@ -19,6 +19,8 @@ The rest of the participants stems from various European public sector education
 - Evidence based conservation and quantifying trends in butterfly abundance using TRIM indices 
 - Choropleth graphs based on ArcGIS shapefile for fish populations 
 
+The participants are PhD students, postdocs and senior scientists who want to build their skills in using R to analyze biodiversity data. We may expect that a fair number of students are relatively inexperienced in using R, so we need to cater to their needs both by helping them prepare for the course and by covering some suitable [introductory material](introduction) at the start of the course. 
+
 ## Exercises & Demonstrations
 
 The afternoons at the end of the two days from 13:00 - 16:30 is planned for *Demonstrations and Exercises* with a *Coffee/Tea* served at 14:30-15:00. This means two blocks of 1.5 h are available on each day...
