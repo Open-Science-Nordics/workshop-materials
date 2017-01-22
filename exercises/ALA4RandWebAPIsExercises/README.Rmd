@@ -1,0 +1,28 @@
+---
+title: "Getting data from a Web API"
+author: "Markus Skyttner"
+date: "January 21, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Getting data from ALA4R
+
+- Using ALA4R directly
+- Using ALA4R configured to get data from web services running in Sweden
+
+## Getting data from a Web API
+
+Take a look at the web page here:
+
+http://herbarium.nrm.se
+
+It serves data from the botanical collections at the museum.
+
+How can we retrieve data from this Web API using R packages?
+
+- rvest
+- httr

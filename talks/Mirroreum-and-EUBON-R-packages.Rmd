@@ -32,12 +32,97 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## EUBON and Mirroreum
+## EUBON - the challenge
 
-- The challenge - WP 1 - 8 and systems integration
-- Integration of workflows and processes across work packages
-- Practical challenges using a traditional mindset
+- The challenge in EUBON - silos in [WP 1-8](http://www.eubon.eu/show/work/packages_3568/)
+- Integration of workflows and processes **across work packages** and systems integration
+- Example: How to get biodiversity analysis tools into WP1 and 2 - web portal?
 
-- Mirroreum: Just go to a web page, log in and get a platform for reproducible open research that supports all your needs?
+## Traditional approach
 
-## TODO - work on these materials
+**One ring to rule them all** - one Centralized System
+
+May work locally - but internationally? Practical challenges:
+
+- Different ways to work - **"cultural" diversity**
+- Teams, time zones, languages, tools, methods
+- Code of conduct - don't control others - mutually beneficial collaboration 
+- Reality: funding provided on project basis - does it give sustainable platforms?
+- The results - a paper is published and the project ends
+
+## More modern approach
+
+Decentralized international collaboration over Internet
+
+- How do people work today - in software?
+- FOSS Data Science tools like R, ROpenSci
+- Versioning and git + GitHub
+- Not one single system - but several in concert, integrated
+
+The Internet - As polyglot environment, using open Internet protocols and standards as common ground
+
+## Rationale for Mirroreum
+
+"How to share work on the raquamaps package - an open source implementation of Aqua Maps?"
+
+- Mi **ROR** eum - reflecting **R**eproducible **O**pen **R**esearch
+- Shoestring (no) budget at all for licenses, hardware etc - use existing infrastructure
+- Attemt to integrate and provide a web ui for biodiversity analysis research - just log in at a web site and get a full-features platform for authoring and publishing reproducible open research
+- Reuse existing widely used open source tools from the research community and stay away from non-open non-free licenses
+- "Can you run all of it on your laptop, the same bits, off-line?"
+
+## FOSS approach - tools
+
+- Use R for reproducible research workflows
+- Use Docker for systems integration - to reduce footprint, minimize dependencies and lock-in
+- Provide portable packagings for increased freedom to create/innovate
+- Allow any FOSS Data Science tools - Python, Julia, Spark etc
+- Mirroreum: Web-based biodiversity analysis frontend - Bundle R + ROpenSci + other packages
+- Can use any data source on the Internet can provide data, including
+	- GBIF's web APIs through ALA4R
+	- Atlas of Living Australia's web APIs through rgbif
+	- Other Web APIs
+	- Any other source open for use (open science != commercial secrets?)
+	- Closed sources such as traditional databases
+
+## Typical collaboration workflow
+
+Create an R or Python package with data, web ui and tutorial
+
+- Build a package - include data, web ui, tutorial (vignette)
+- Author a reproducible research paper using the above
+- When stable, publish/release package to ...
+	- GitHub 
+	- RForge 
+	- ROpenSci
+	- CRAN
+
+## Local customizations and integrations
+
+- Not all R packages are on CRAN or ROpenSci (yet!) for various reasons
+- Packages on GitHub - with local or regional adaptations, work in progress
+- Custom data sources
+- Re-bundle with Docker - base images extended with various extra packages and configurations
+
+## Microservices architecture with Docker
+
+- Mirroreum is the web-based frontend - deploy locally or regionally - this client is not tightly coupled to backend services, can use any services but is pre-configured for regional data services
+- Bundles **rgbif** and **ALA4R** configs - allows (pre-)configured R clients to connect to regional services
+- Deploy local and/or regional data services based on open-source GBIF and ALA components
+- Anyone can pull components and run anywhere - combine like LEGO
+
+## DevOps systems integration workflow
+
+- Assemble packages - bundle into binary images with Docker (the src in Dockerfiles)
+- Build and push those images to Docker Hub
+	- Example: [raquamaps related components at Docker Hub](https://hub.docker.com/u/raquamaps/)
+	- Example: [DINA-Web related components at Docker Hub](https://hub.docker.com/u/dina)
+- Deploy images on servers
+	- Web UI running for example here: [swedishbirdrecoveries](https://birdringing.dina-web.net)
+
+## Examples 
+
+- Demo later: Mirroreum getting data from locally deployed customized ALA and GBIF services
+	- https://mirroreum.dina-web.net
+	- https:://testgbif.nrm.se (Swedish ALA and GBIF services)
+

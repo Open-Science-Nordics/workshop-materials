@@ -1,0 +1,12 @@
+---
+title: "Using R and rOpenSci packages"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Some useful rOpenSci packages
+
+- How to clean taxonomy names with "taxize"

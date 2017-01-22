@@ -21,36 +21,71 @@ The rest of the participants stems from various European public sector education
 
 The participants are PhD students, postdocs and senior scientists who want to build their skills in using R to analyze biodiversity data. We may expect that a fair number of students are relatively inexperienced in using R, so we need to cater to their needs both by helping them prepare for the course and by covering some suitable [introductory material](introduction) at the start of the course. 
 
-## Exercises & Demonstrations
+## Presenters
+
+Presentations are primarily by:
+
+- Scott Chamberlain, ROpenSci
+- Ben Raymond, [ACE CRC](http://acecrc.org.au/)
+- Alejandro Ruete, [Swedish University of Agricultural Sciences](http://www.slu.se/en/)
+- Markus Skyttner, Swedish Museum of Natural History
+- Alexander Zizka, Gothenburg University
+
+## Topics to be presented
+
+- R for scientific computation and biodiversity analysis
+- rOpenSci and R packages for biodiversity analysis
+- Ignorance scores for primary biodiversity data
+- Mirroreum and EU-BON R packages
+- Atlas of Living Australia and ALA4R
+	- a brief overview of the ALA and the full APIs
+	- the ALA4R package and the API subset that it covers
+	- some use case examples
+- speciesgeocodeR and sampbias R packages
+
+## Repository
+
+Please put any materials relating to demonstrations and exercises here:
+
+https://github.com/Open-Science-Nordics/workshop-materials
+
+## Afternoon Exercises & Demonstrations
 
 The afternoons at the end of the two days from 13:00 - 16:30 is planned for *Demonstrations and Exercises* with a *Coffee/Tea* served at 14:30-15:00. This means two blocks of 1.5 h are available on each day...
 
-We could arrange to interleave demos/letures/talks with exercises for the different topics... Session 1 would come first with some Lecture/Demos then Session 2 follows up with Exercises etc... A suggested programme could be split into dual 45-minute sessions like so:
-
 ### Day 1
 
-- 13:00 - 13:45 * Session 1 - rOpenSci for scientific computation and biodiversity analysis *
-- 13:45 - 14:30 * Session 2 - exercises *
-- 14:30 - 15:00 * Coffee/Tea *
-- 15:00 - 15:45 * Session 3 - "Ignorance scores for primary biodiversity data"*
-- 15:45 - 16:30 * Session 4 - exercises *
+- 08:30 - 09:00 Registration
+- 09:00 - 09:10 Welcome
+- 09:10 - 09:40 Talk: **R for scientific computation and biodiversity analysis** Markus Skyttner
+- 09:40 - 10:30 Talk: **rOpenSci and R packages for biodiversity analysis** Scott Chamberlain
+- 10:30 - 11:00 Coffee/Sandwich
+- 11:00 - 12:00 Talk: **Ignorance scores for primary biodiversity data** Alejandro Ruete
 
-The suggestion here is to start Session 1 on the topic of "R for scientific computation and biodiversity analysis using rOpenSci packages" with some demos and lectures / walkthrough of relevant use case on topics recommended/suggested by Scott C, then Session 2 would follow with exercises related to this topic etc in that fashion.
+- 12:00 - 13:00 Lunch at Restaurant Fossilen
 
-Session 3 could be on topic "Ignorance scores for primary biodiversity data" from Alejandro Ruete with some demos. This is followed by session 4 which provides some hands-on exercises using the package and allowing people to work on an exercise involving a concrete use case.
+- 13:00 - 13:45 Session: **Introduction to R - data manipulation with dplyr and tidyr**
+- 13:45 - 14:30 Session: **Using R and rOpenSci-packages - some exercises**
+- 14:30 - 15:00 Coffee/Tea
+- 15:00 - 15:20 Session: **Data Handling Tutorial - How to rasterize primary biodiversity data**
+- 15:20 - 15:45 Session: **Creating a simple R data package - swedishbutterflies**
+- 15:45 - 16:30 Session: **Questions and Answers - BRING YOUR OWN questions to the table**
 
 ### Day 2
 
-- 13:00 - 13:45 * Session 5 - "Atlas of Living Australia and ALA4R"*
-- 13:45 - 14:30 * Session 6 - exercises *
-- 14:30 - 15:00 * Coffee/Tea *
-- 15:00 - 15:45 * Session 7 - "speciesgeocodeR and sampbias: Dealing with coordinate errors and sampling biases in biodiversity data"*
-- 15:45 - 16:30 * Session 8 - exercises *
+- 09:00 - 09:30 Talk: **Mirroreum and EU-BON R packages** Markus Skyttner
+- 09:30 - 10:30 Talk: **Atlas of Living Australia and ALA4R** David Martin and Ben Raymond
+- 10:30 - 11:00 Coffee/Sandwich
+- 11:00 - 12:00 Talk: **speciesgeocodeR and sampbias** Alexander Zizka
+
+- 12:00 - 13:00 Lunch at Restaurant Fossilen
+
+- 13:00 - 13:45 Session: **Exercises and demos - getting data using ALA4R and getting data from Web APIs**
+- 13:45 - 14:30 Session: **Packages with Swedish bird data - swedishbirdrecoveries and swedishbirdtrends**
+- 14:30 - 15:00 Coffee/Tea
+- 15:00 - 15:20 Session: **Exercises related to "speciesgeocodeR and sampbias: Dealing with coordinate errors and sampling biases in biodiversity data"**
+- 15:20 - 16:30 Session: **Questions and Answers - BRING YOUR OWN questions to the table**
  
-Session 5 could start with a lecture and demo of "Atlas of Living Australia and ALA4R" from Ben R. Then Session 6 would follow with exercises based on using ALA4R in practice.
-
-Session 7 could start with a presentation and lecture based on "speciesgeocodeR and sampbias: Dealing with coordinate errors and sampling biases in biodiversity data" from A Zizka. Then Session 8 would follow with hands-on exercises involving use of these tools.
-
 ### Infrastructure
 
 People attending will have laptops and connectivity to Internet, through Eduroam or credentials we assume that the Museum ISIT department can arrange. 
@@ -59,12 +94,12 @@ The tools and various required software is bundled into "Mirroeum" which can be 
 
 Details at: https://github.com/raquamaps/mirroreum/blob/master/eubon-rocker/Dockerfile
 
-I am planning on building up-to-date images based on that, which can be pulled with
+Images based on that Dockerfile can be pulled with:
 
 	docker pull raquamaps/mirroeum
 	docker pull raquamaps/shiny
 
+# Resources / Links
 
-
-
-
+- ROpenSci - "Fostering open science and open data with R" at https://ropensci.github.io/ambassador-packet/slides/#ropensci
+- Nordic Open Science materials from Finland at http://openscience.fi/initiatives
