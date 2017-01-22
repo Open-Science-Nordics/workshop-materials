@@ -1,0 +1,16 @@
+---
+title: "swedishbutterflies"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## swedishbutterflies
+
+There is a publicly available dataset that Bengt at the Swedish Museum of Natural History has worked on for a long time, recording data over known presence for a set of butterfly species across some Swedish landscapes.
+
+Here it is: http://www2.nrm.se/en/CATLEP2003.xls
+
+- Could this dataset be distributed as an R package? Why or why not?

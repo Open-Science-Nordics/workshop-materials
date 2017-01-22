@@ -1,0 +1,77 @@
+---
+title: "Swedish Birds"
+author: "Markus Skyttner"
+date: "January 21, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Swedish Birds Data
+
+Let us have a look at two packages provide some dataset with long term data about Swedish Birds:
+
+- swedishbirdtrends
+- swedishbirdrecoveries
+
+Let's see how we can use these packages..
+
+## Exercises on "swedishbirdtrends"
+
+- Load the dataset in the package "swedishbirdtrends"
+	- How do you load the package?
+	- Why do you think that this packages are not available from ROpenSci or CRAN?
+	- Where can you get these packages?
+		- swedishbirdtrends at https://github.com/mskyttner/swedishbirdtrends
+	
+- There is some data in the package, summarize it briefly
+	- Is it large?
+	- What number of rows and columns?
+	- Is it up-to-date?
+	- Where can you find information about how to use the package?
+	- Where does the bundled datasets come from?
+	- Where can you find the source code for this package?
+	- Can you say anything about where some output form this package is available? (hint: https://github.com/mskyttner/swedishbirdtrends/issues/1)
+	- How do you think this package is intended to be used?
+	
+```{r}
+
+library(swedishbirdtrends)
+
+birdtrends
+birdtotals
+
+nrow(birdtrends)
+ncol(birdtrends)
+names(birdtrends)
+
+```
+
+## Exercises on "swedishbirdrecoveries"
+
+- Where can you get this packages?
+	- swedishbirdrecoveries at https://github.com/mskyttner/swedishbirdrecoveries
+	- Why do you think that this packages are not available from ROpenSci or CRAN?
+
+- There is some data in the package, summarize it briefly
+	- How many datasets? Why?
+	- Give some stats on the size of the datasets?
+	- What number of rows and columns?
+	- Size on disk?
+	- Is this dataset up-to-date? Why?
+	- Where can you find information about how to use the package?
+	- Where does the bundled datasets come from?
+	- Can you say anything about where some output form this package is available?
+	- How do you think this package is intended to be used?
+	
+## Web UI	for swedish bird recoveries
+	
+There is a web app at https://birdringing.dina-web.net 
+
+- Can you say discover something about the dataset based on it?
+- Can you suggest some changes and improvements?
+- Where could you file such change requests or bugs or issues that you discover?
+- Would any rOpenSci packages be relevant for usage with this dataset?
+- Could any other package mentioned here or otherwise be relevant to use?

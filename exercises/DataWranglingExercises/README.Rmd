@@ -1,0 +1,22 @@
+---
+title: "Introduction to Data Wrangling"
+author: "Markus Skyttner"
+date: "January 21, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data Wrangling with dplyr and tidyr
+
+Lets do some common data manipulation operations with dplyr and tidyr:
+
+- How can you read data into R from an Excel spreadsheet?
+- How can you filter data using dplyr?
+- How can you rename columns?
+- How can you calculate new columns?
+- How can you combine two datasets?
+- How can you pivot - wide and thin?
+
