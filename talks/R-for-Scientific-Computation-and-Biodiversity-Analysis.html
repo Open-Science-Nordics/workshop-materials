@@ -128,7 +128,84 @@ Keyboard shortcuts for presentation viewing mode:
 &#39;h&#39; enable code highlight mode
 &#39;p&#39; show presenter notes</pre>
 
-</article></slide><slide class=''><hgroup><h2>Modus Operandum</h2></hgroup><article  id="modus-operandum">
+</article></slide><slide class=''><hgroup><h2>Collaborating using R - &quot;Units&quot;</h2></hgroup><article  id="collaborating-using-r---units">
+
+<ul>
+<li><p><strong>Scripts</strong> - describe steps in your workflow, can re-run and reproducing results, by calling <strong>Functions</strong> - which encapsulates re-usable ways to process <strong>datasets</strong></p></li>
+<li><strong>R Packages</strong> - encapsulates a larger unit of work, including:
+
+<ul>
+<li>Datasets</li>
+<li>Documentation of datasets</li>
+<li>Functions</li>
+<li>Documentation of functions</li>
+<li>Tutorials showing workflows involving data using the functions</li>
+<li>Web UIs</li>
+<li>License</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Collaboration using R - &quot;Processes&quot;</h2></hgroup><article  id="collaboration-using-r---processes">
+
+<ul>
+<li>Use git and GitHub or equivalent public online respository for publishing source code</li>
+<li>Publish data to the Internet - enable others to use your datasets</li>
+<li>Write books together - collaborate and use markdown, see <a href='https://bookdown.org' title=''>bookdown</a></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Biodiversity Analysis</h2></hgroup><article  id="biodiversity-analysis">
+
+<ul>
+<li>More than just computations or showing visuals - it is about the whole narrative and explaining the results</li>
+<li>Involves several reproducible steps:
+
+<ul>
+<li>processing data from different sources</li>
+<li>modelling / computations</li>
+<li>presenting results, while enabling peer-review to build trust in results</li>
+<li>tutorials/documentation - explaining to peers how to reproduce results, enabling peer-review</li>
+</ul></li>
+<li>ROpenSci offers many excellent packages for biodiversity analysis (but also for many other disciplines)</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Scientific Computations</h2></hgroup><article  id="scientific-computations">
+
+<p>Functions may involve scientific calculations - models etc&#8230;</p>
+
+<ul>
+<li>FP vs OOP - Functional Programming versus Object-Oriented Programming - focus on VERBs not NOUNs, less of side-effects and state contrasting with Object Oriented paradigm where focus is on NOUNs not VERBs and the data and algorithms often carries a lot of state and side-effects of one method to other objects in the system are often plenty and difficult to control and understand</li>
+<li>Designing R functions for calculations - well situated for scaling and doing computations in parallel at scale</li>
+<li>Look at <a href='www.opencpu.org' title=''>OpenCPU</a></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Presenting results from computations</h2></hgroup><article  id="presenting-results-from-computations">
+
+<ul>
+<li>Visualization</li>
+<li>Communicate results clearly</li>
+<li>Create a Shiny web app as part of your R package</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Use Data Science Open Source Tools</h2></hgroup><article  id="use-data-science-open-source-tools">
+
+<ul>
+<li>Docker - for running anything anywhere</li>
+<li>ROpenSci-packages - for Biodiversity Analysis tools</li>
+<li>OpenCPU - for exposing data as a service</li>
+<li>Shiny - for providing a web based interactive user interface</li>
+<li>Various R packages - create your own or use existing:
+
+<ul>
+<li>rgbif</li>
+<li>bookdown</li>
+<li>figshare</li>
+<li>dryad</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Modus Operandum for Software Carpentry</h2></hgroup><article  id="modus-operandum-for-software-carpentry">
+
+<p>Plenty Learning Resources are available, such as:</p>
 
 <ul>
 <li>Reproducible Open Research
@@ -146,21 +223,19 @@ Keyboard shortcuts for presentation viewing mode:
 </ul></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Open Source Toolbox</h2></hgroup><article  id="open-source-toolbox">
+</article></slide><slide class=''><hgroup><h2>Learning resources for R work</h2></hgroup><article  id="learning-resources-for-r-work">
+
+<p>Here are some great learning resources (in book format, free access):</p>
 
 <ul>
-<li>Docker - for running anything anywhere</li>
-<li>ROpenSci-packages - for Biodiversity Analysis tools</li>
-<li>OpenCPU - for exposing data as a service</li>
-<li>Shiny - for providing a web based interactive user interface</li>
+<li><a href='http://r4ds.had.co.nz/' title=''>http://r4ds.had.co.nz/</a></li>
+<li><a href='http://adv-r.had.co.nz/' title=''>http://adv-r.had.co.nz/</a></li>
+<li><a href='http://r-pkgs.had.co.nz/' title=''>http://r-pkgs.had.co.nz/</a></li>
+<li><a href='https://bookdown.org/yihui/bookdown/' title=''>https://bookdown.org/yihui/bookdown/</a></li>
+<li><a href='https://bookdown.org/' title=''>https://bookdown.org/</a> - various other great materials are published here</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Scientific Computations</h2></hgroup><article  id="scientific-computations">
-
-<ul>
-<li>FP - Functional Programming - focus on VERBs not NOUNs, less of side-effects and state contrasting with Object Oriented paradigm where focus is on NOUNs not VERBs and the data and algorithms often carries a lot of state and side-effects of one method to other objects in the system are often plenty and difficult to control and understand</li>
-<li>Well geared fo executing computations in parallel at scale</li>
-</ul></article></slide>
+<p>More sources for learning resources to cover in exercises/demos/tutorials!</p></article></slide>
 
 
   <slide class="backdrop"></slide>

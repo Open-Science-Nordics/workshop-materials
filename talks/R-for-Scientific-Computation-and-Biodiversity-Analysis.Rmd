@@ -32,21 +32,66 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Scientific Computations
+## Collaborating using R - "Units"
 
-- FP - Functional Programming - focus on VERBs not NOUNs, less of side-effects and state contrasting with Object Oriented paradigm where focus is on NOUNs not VERBs and the data and algorithms often carries a lot of state and side-effects of one method to other objects in the system are often plenty and difficult to control and understand
-- Well geared fo executing computations in parallel at scale
+- **Scripts** - describe steps in your workflow, can re-run and reproducing results, by calling **Functions** - which encapsulates re-usable ways to process **datasets**
+
+- **R Packages** - encapsulates a larger unit of work, including:
+	- Datasets
+	- Documentation of datasets
+	- Functions
+	- Documentation of functions
+	- Tutorials showing workflows involving data using the functions
+	- Web UIs
+	- License
+	
+## Collaboration using R - "Processes"
+
+- Use git and GitHub or equivalent public online respository for publishing source code
+- Publish data to the Internet - enable others to use your datasets
+- Write books together - collaborate and use markdown, see [bookdown](https://bookdown.org)
 
 ## Biodiversity Analysis
 
-- More than just computations - the whole narrative
+- More than just computations or showing visuals - it is about the whole narrative and explaining the results
 - Involves several reproducible steps:
 	- processing data from different sources
-	- modelling (computations)
-	- presenting results, enabling peer-review to build trust in results
+	- modelling / computations
+	- presenting results, while enabling peer-review to build trust in results
+	- tutorials/documentation - explaining to peers how to reproduce results, enabling peer-review
 
-## Modus Operandum
-	
+- ROpenSci offers many excellent packages for biodiversity analysis (but also for many other disciplines)
+
+## Scientific Computations
+
+Functions may involve scientific calculations - models etc...
+
+- FP vs OOP - Functional Programming versus Object-Oriented Programming - focus on VERBs not NOUNs, less of side-effects and state contrasting with Object Oriented paradigm where focus is on NOUNs not VERBs and the data and algorithms often carries a lot of state and side-effects of one method to other objects in the system are often plenty and difficult to control and understand
+- Designing R functions for calculations - well situated for scaling and doing computations in parallel at scale
+- Look at [OpenCPU](www.opencpu.org)
+
+## Presenting results from computations
+
+- Visualization
+- Communicate results clearly
+- Create a Shiny web app as part of your R package
+
+## Use Data Science Open Source Tools
+
+- Docker - for running anything anywhere
+- ROpenSci-packages - for Biodiversity Analysis tools
+- OpenCPU - for exposing data as a service
+- Shiny - for providing a web based interactive user interface
+- Various R packages - create your own or use existing:
+	- rgbif
+	- bookdown
+	- figshare
+	- dryad
+
+## Modus Operandum for Software Carpentry
+
+Plenty Learning Resources are available, such as:
+
 - Reproducible Open Research
 	- http://swcarpentry.github.io/r-novice-gapminder/
 - Good Enough Practices in Software Carpentry
@@ -55,16 +100,14 @@ knitr::opts_chunk$set(echo = FALSE)
 	- http://swcarpentry.github.io/r-novice-inflammation/
 	- http://swcarpentry.github.io/r-novice-gapminder/
 
-## Open Source Toolbox
+## Learning resources for R work
 
-- Docker - for running anything anywhere
-- ROpenSci-packages - for Biodiversity Analysis tools
-- OpenCPU - for exposing data as a service
-- Shiny - for providing a web based interactive user interface
+Here are some great learning resources (in book format, free access):
 
-## What is the relevance of... ?
+- http://r4ds.had.co.nz/
+- http://adv-r.had.co.nz/
+- http://r-pkgs.had.co.nz/
+- https://bookdown.org/yihui/bookdown/
+- https://bookdown.org/ - various other great materials are published here
 
-- bookdown
-- figshare
-- rgbif
-- dryad
+More sources for learning resources to cover in exercises/demos/tutorials!

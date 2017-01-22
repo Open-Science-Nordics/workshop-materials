@@ -128,16 +128,134 @@ Keyboard shortcuts for presentation viewing mode:
 &#39;h&#39; enable code highlight mode
 &#39;p&#39; show presenter notes</pre>
 
-</article></slide><slide class=''><hgroup><h2>EUBON and Mirroreum</h2></hgroup><article  id="eubon-and-mirroreum">
+</article></slide><slide class=''><hgroup><h2>EUBON - the challenge</h2></hgroup><article  id="eubon---the-challenge">
 
 <ul>
-<li>The challenge - WP 1 - 8 and systems integration</li>
-<li>Integration of workflows and processes across work packages</li>
-<li><p>Practical challenges using a traditional mindset</p></li>
-<li><p>Mirroreum: Just go to a web page, log in and get a platform for reproducible open research that supports all your needs?</p></li>
+<li>The challenge in EUBON - silos in <a href='http://www.eubon.eu/show/work/packages_3568/' title=''>WP 1-8</a></li>
+<li>Integration of workflows and processes <strong>across work packages</strong> and systems integration</li>
+<li>Example: How to get biodiversity analysis tools into WP1 and 2 - web portal?</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>TODO - work on these materials</h2></hgroup><article  id="todo---work-on-these-materials"></article></slide>
+</article></slide><slide class=''><hgroup><h2>Traditional approach</h2></hgroup><article  id="traditional-approach">
+
+<p><strong>One ring to rule them all</strong> - one Centralized System</p>
+
+<p>May work locally - but internationally? Practical challenges:</p>
+
+<ul>
+<li>Different ways to work - <strong>&quot;cultural&quot; diversity</strong></li>
+<li>Teams, time zones, languages, tools, methods</li>
+<li>Code of conduct - don&#39;t control others - mutually beneficial collaboration</li>
+<li>Reality: funding provided on project basis - does it give sustainable platforms?</li>
+<li>The results - a paper is published and the project ends</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>More modern approach</h2></hgroup><article  id="more-modern-approach">
+
+<p>Decentralized international collaboration over Internet</p>
+
+<ul>
+<li>How do people work today - in software?</li>
+<li>FOSS Data Science tools like R, ROpenSci</li>
+<li>Versioning and git + GitHub</li>
+<li>Not one single system - but several in concert, integrated</li>
+</ul>
+
+<p>The Internet - As polyglot environment, using open Internet protocols and standards as common ground</p>
+
+</article></slide><slide class=''><hgroup><h2>Rationale for Mirroreum</h2></hgroup><article  id="rationale-for-mirroreum">
+
+<ul>
+<li>Mi <strong>ROR</strong> eum - reflecting <strong>R</strong>eproducible <strong>O</strong>pen <strong>R</strong>esearch</li>
+<li>No new budget at all for licenses, hardware etc - use existing infrastructure</li>
+<li>Provide a web ui for biodiversity analysis research (&quot;how to share work on raquamaps package - open source implementation of Aqua Maps&quot;)</li>
+<li>Log in and get a full-features platform for authoring and publishing reproducible open research</li>
+<li>Reuse existing widely used open source tools from the research community</li>
+<li>Stay away from non-open non-free licenses</li>
+<li>Reduce dependencies, increase freedom to create/innovate</li>
+<li>Can you run all of it on your laptop, off-line?</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>FOSS approach - tools</h2></hgroup><article  id="foss-approach---tools">
+
+<ul>
+<li>Use Docker for systems integration</li>
+<li>Use R for reproducible research workflows</li>
+<li>Allow any FOSS Data Science tools - Python, Julia, Spark etc</li>
+<li>Web-based biodiversity analysis frontend - Bundle R + ROpenSci + other packages</li>
+<li>Any data source on the Internet can provide data, including
+
+<ul>
+<li>GBIF</li>
+<li>Atlas of Living Australia</li>
+<li>Other Web APIs</li>
+<li>Any other source open for use (open science != commercial secrets?)</li>
+<li>Closed sources such as traditional databases</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Typical workflow</h2></hgroup><article  id="typical-workflow">
+
+<p>Create an R or Python package with data, web ui and tutorial</p>
+
+<ul>
+<li>Build a package - include data, web ui, tutorial (vignette)</li>
+<li>Author a reproducible research paper using the above</li>
+<li>When stable, publish/release to &#8230;
+
+<ul>
+<li>GitHub</li>
+<li>RForge</li>
+<li>ROpenSci</li>
+<li>CRAN</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Local customizations and integrations</h2></hgroup><article  id="local-customizations-and-integrations">
+
+<ul>
+<li>Not all R packages on CRAN or ROpenSci (yet!)</li>
+<li>Packages from github - local or regional adaptations, work in progress</li>
+<li>Custom data sources</li>
+<li>Re-bundle with Docker - extend with these customizations</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Microservices architecture with Docker</h2></hgroup><article  id="microservices-architecture-with-docker">
+
+<ul>
+<li>Mirroreum is the web-based frontend - deploy locally or regionally - this client is not tightly coupled to backend services, can use any services but is pre-configured for regional data services</li>
+<li>Bundles <strong>rgbif</strong> and <strong>ALA4R</strong> configs - allows (pre-)configured R clients to connect to regional services</li>
+<li>Deploy local and/or regional data services based on open-source GBIF and ALA components</li>
+<li>Anyone can pull components and run anywhere - combine like LEGO</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>DevOps systems integration workflow</h2></hgroup><article  id="devops-systems-integration-workflow">
+
+<ul>
+<li>Assemble packages - bundle into binary images with Docker (the src in Dockerfiles)</li>
+<li>Build and push those images to Docker Hub
+
+<ul>
+<li>Example: <a href='https://hub.docker.com/u/raquamaps/' title=''>raquamaps related components at Docker Hub</a></li>
+<li>Example: <a href='https://hub.docker.com/u/dina' title=''>DINA-Web related components at Docker Hub</a></li>
+</ul></li>
+<li>Deploy images on servers
+
+<ul>
+<li>Web UI running for example here: <a href='https://birdringing.dina-web.net' title=''>swedishbirdrecoveries</a></li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Examples</h2></hgroup><article  id="examples">
+
+<ul>
+<li>Demo: Mirroreum getting data from locally deployed customized ALA and GBIF services
+
+<ul>
+<li><a href='https://mirroreum.dina-web.net' title=''>https://mirroreum.dina-web.net</a></li>
+<li><a href='https:://testgbif.nrm.se' title=''>https:://testgbif.nrm.se</a> (Swedish ALA and GBIF services)</li>
+</ul></li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>
