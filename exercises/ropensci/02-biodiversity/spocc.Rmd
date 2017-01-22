@@ -1,8 +1,7 @@
 ---
 title: "Biodiversity data: spocc"
 author: Scott Chamberlain
-date: 2017-01-24
-output: md_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
 ```{r echo=FALSE}
@@ -15,16 +14,16 @@ knitr::opts_chunk$set(
 
 spocc - Make some maps!
 
-### Load libraries
+## Load libraries
 
-```{r load, message=FALSE, warning=FALSE}
+```{r}
 library('spocc')
 ```
 
-### spocc unifies access to biodiversity data across sources
+## spocc unifies access to biodiversity data across sources
 
 ```{r sources, message=FALSE, warning=FALSE}
-out <- occ(query='Accipiter striatus', from='gbif')
+out <- occ(query = 'Accipiter striatus', from = 'gbif')
 out$gbif # GBIF data w/ metadata
 out$ebird$data # empty
 out$gbif$meta #  metadata, your query parameters, time the call executed, etc. 
@@ -34,23 +33,16 @@ out$gbif$data # just data
 And you can squash together data from sources easily
 
 ```{r manysources, message=FALSE, warning=FALSE}
-out <- occ(query='Accipiter striatus', from=c('gbif','ebird'))
-head( occ2df(out) )
+out <- occ(query = 'Accipiter striatus', from = c('gbif', 'ebird'))
+occ2df(out)
 ```
 
-### Make a map using ggplot2
+## Your turn
 
-```{r ggplot2}
-ebird_data <- occ(query = 'Accipiter striatus', from = 'ebird')
-mapggplot(ebird_data)
-```
+- 5 min
 
-### Make a map using GitHub gists
-
-If you have a Github Account, you can get an interactive map on Github in one line of code. The map will open in your default browser. 
-
-```{r gistmap, eval=FALSE}
-mapgist(ebird_data, color=c("#976AAE","#6B944D","#BD5945"))
-```
-
-![](figure/gistmap.png)
+> 1. Explore getting data from other sources for the same taxa to see 
+how they compare. And combine output (hint: occ2df() function)
+> 2. If you have time, explore other ways to query with spocc, including
+possibly by spatial area, sp class spatial objects, taxize identifiers,
+or other things.

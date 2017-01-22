@@ -2,9 +2,21 @@ intro:
 	cd 00-introduction;\
 	Rscript -e 'rmarkdown::render("intro.Rmd")'
 
+taxize:
+	cd 01-taxonomy;\
+	Rscript -e 'rmarkdown::render("taxize.Rmd", "md_document")';\
+	Rscript -e 'rmarkdown::render("taxize.Rmd", "html_document")'
+
 ids:
 	cd 01-taxonomy;\
-	Rscript -e 'rmarkdown::render("identifiers.Rmd")'
+	Rscript -e 'rmarkdown::render("identifiers.Rmd", "md_document")';\
+	Rscript -e 'rmarkdown::render("identifiers.Rmd", "html_document")'
+
+hierarchy:
+	cd 01-taxonomy;\
+	Rscript -e 'rmarkdown::render("hierarchies.Rmd", "md_document")';\
+	Rscript -e 'rmarkdown::render("hierarchies.Rmd", "html_document")'
+
 
 countries:
 	cd 02-biodiversity;\

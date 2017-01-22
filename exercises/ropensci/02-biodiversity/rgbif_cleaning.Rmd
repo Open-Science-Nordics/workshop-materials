@@ -1,8 +1,7 @@
 ---
 title: "Biodiversity data: rgbif data cleaning"
 author: Scott Chamberlain
-date: 2017-01-24
-output: md_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 ---
 
 ```{r echo=FALSE}
@@ -15,13 +14,11 @@ knitr::opts_chunk$set(
 
 ## rgbif data quality/data cleaning
 
-### Load some libraries
-
 ```{r}
 library('rgbif')
 ```
 
-### Parsing output by issue
+## Parsing output by issue
 
 ```{r}
 (res <- occ_search(geometry='POLYGON((30.1 10.1, 10 20, 20 40, 40 40, 30.1 10.1))', limit = 50))
@@ -30,8 +27,8 @@ library('rgbif')
 Can print whole table, or search for matches
 
 ```{r}
-head(gbifissues)
-gbifissues[ gbifissues$code %in% c('cdround','cudc','gass84','txmathi'), ]
+head(gbif_issues())
+gbif_issues()[ gbif_issues()$code %in% c('cdround','cudc','gass84','txmathi'), ]
 ```
 
 Or parse issues in various ways, e,g. remove data rows with certain issue classes
@@ -66,7 +63,7 @@ res %>% occ_issues(-gass84, mutate = "split_expand")
 ```
 
 
-### Other cleaning
+## Other cleaning
 
 * Contextual cleaning based on 
   * impossible lat/long values
@@ -74,3 +71,10 @@ res %>% occ_issues(-gass84, mutate = "split_expand")
   * expected range of values
   * etc.
   
+
+## Your turn
+
+- 5 min
+
+> Get some data from rgbif::occsearch, then use rgbif::occ_issues to 
+parse data. 
