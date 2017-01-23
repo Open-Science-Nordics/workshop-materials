@@ -26,3 +26,8 @@ How can we retrieve data from this Web API using R packages?
 
 - rvest
 - httr
+- jsonlite
+
+Read tutorial here:
+
+https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html
