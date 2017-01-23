@@ -53,7 +53,7 @@ https://github.com/Open-Science-Nordics/workshop-materials
 
 The afternoons at the end of the two days from 13:00 - 16:30 is planned for *Demonstrations and Exercises* with a *Coffee/Tea* served at 14:30-15:00. This means two blocks of 1.5 h are available on each day...
 
-### Day 1
+## Day 1
 
 - 08:30 - 09:00 Registration
 - 09:00 - 09:10 Welcome
@@ -71,7 +71,7 @@ The afternoons at the end of the two days from 13:00 - 16:30 is planned for *Dem
 - 15:20 - 15:45 Session: **Creating a simple R data package - swedishbutterflies**
 - 15:45 - 16:30 Session: **Questions and Answers - BRING YOUR OWN questions to the table**
 
-### Day 2
+## Day 2
 
 - 09:00 - 09:30 Talk: **Mirroreum and EU-BON R packages** Markus Skyttner
 - 09:30 - 10:30 Talk: **Atlas of Living Australia and ALA4R** David Martin and Ben Raymond
@@ -99,7 +99,14 @@ Images based on that Dockerfile can be pulled with:
 	docker pull raquamaps/mirroeum
 	docker pull raquamaps/shiny
 
+# Feedback 
+
+If you have attended this event, please make sure to fill out this quick survey with your feedback:
+
+[Survey for feedback on "rOpenSci for all" workshop in Stockholm Jan 24th-25th 2017](https://www.surveymonkey.com/r/DV35GBX)
+
 # Resources / Links
 
 - ROpenSci - "Fostering open science and open data with R" at https://ropensci.github.io/ambassador-packet/slides/#ropensci
 - Nordic Open Science materials from Finland at http://openscience.fi/initiatives
+- Some challenges in doing reproducible research at https://ropensci.org/blog/2014/06/09/reproducibility/
