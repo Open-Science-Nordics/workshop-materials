@@ -110,3 +110,6 @@ If you have attended this event, please make sure to fill out this quick survey 
 - ROpenSci - "Fostering open science and open data with R" at https://ropensci.github.io/ambassador-packet/slides/#ropensci
 - Some challenges in doing reproducible research at https://ropensci.org/blog/2014/06/09/reproducibility/
 - Nordic Open Science materials from Finland at http://openscience.fi/initiatives
+
+- https://cdn.rawgit.com/Open-Science-Nordics/workshop-materials/e26657a9/exercises/speciesgeocoder_sampbias/speciesgeocodeR_coordinate_cleaning_exercise.html
+
