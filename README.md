@@ -96,7 +96,7 @@ Details at: https://github.com/raquamaps/mirroreum/blob/master/eubon-rocker/Dock
 
 Images based on that Dockerfile can be pulled with:
 
-	docker pull raquamaps/mirroeum
+	docker pull raquamaps/mirroreum
 	docker pull raquamaps/shiny
 
 # Feedback 
@@ -108,5 +108,5 @@ If you have attended this event, please make sure to fill out this quick survey 
 # Resources / Links
 
 - ROpenSci - "Fostering open science and open data with R" at https://ropensci.github.io/ambassador-packet/slides/#ropensci
-- Nordic Open Science materials from Finland at http://openscience.fi/initiatives
 - Some challenges in doing reproducible research at https://ropensci.org/blog/2014/06/09/reproducibility/
+- Nordic Open Science materials from Finland at http://openscience.fi/initiatives
