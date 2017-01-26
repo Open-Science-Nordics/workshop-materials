@@ -96,8 +96,19 @@ Details at: https://github.com/raquamaps/mirroreum/blob/master/eubon-rocker/Dock
 
 Images based on that Dockerfile can be pulled with:
 
-	docker pull raquamaps/mirroreum
-	docker pull raquamaps/shiny
+	docker pull raquamaps/mirroreum:v0
+	#docker pull raquamaps/shiny:v0
+
+You can (get and) run the image with:
+
+	# get and start the service on port 8787
+	docker run -d -p 8787:8787 raquamaps/mirroreum:v0
+
+	# log in with rstudio/rstudio
+	firefox http://localhost:8787
+
+You can read more docs at https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image#running-rstudio-server
+
 
 # Feedback 
 
