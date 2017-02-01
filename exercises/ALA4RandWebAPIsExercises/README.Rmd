@@ -36,3 +36,8 @@ Read tutorial here first:
 - https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html
 - https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html
 
+# Solution
+
+Some approaches for solving the tasks are detailed here:
+
+https://rawgit.com/Open-Science-Nordics/workshop-materials/master/exercises/ALA4RandWebAPIsExercises/solution.html
