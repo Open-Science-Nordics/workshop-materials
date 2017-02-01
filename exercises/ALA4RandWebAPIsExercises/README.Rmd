@@ -11,8 +11,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Getting data from ALA4R
 
-- Using ALA4R directly
-- Using ALA4R configured to get data from web services running in Sweden
+1. Using ALA4R directly
+
+1. Using ALA4R configured to get data from web services running in Sweden
+
+1. Using ALA4R configured to get data from web services running in Scotland
 
 ## Getting data from a Web API
 
@@ -28,6 +31,8 @@ How can we retrieve data from this Web API using R packages?
 - httr
 - jsonlite
 
-Read tutorial here:
+Read tutorial here first:
 
-https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html
+- https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html
+- https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html
+

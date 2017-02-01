@@ -1,0 +1,514 @@
+---
+title: "Getting data using the ALA4R client and getting data directly from a Web API"
+author: "Markus Skyttner"
+date: "Solutions"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Getting data from ALA4R
+
+Using ALA4R directly to retrieve data from the Australian services
+
+```{r, message=FALSE}
+
+library(ALA4R)
+library(dplyr, quietly = TRUE)
+library(tibble)
+
+# check the help for ALA4R
+# read the "vignette" - example 1 about name searching
+# then make occurrence search through ALA for a species, like so:
+occs <- 
+	occurrences(
+		taxon = "Eucalyptus gunnii",
+		fields = c("longitude", "latitude", "common_name", "taxon_name"),
+		download_reason_id = 10
+	)
+
+# pick out all the unique coordinate pairs
+locs <- 
+	occs$data %>%
+	select(lon = longitude, lat = latitude) %>%
+	filter(!is.na(lon) & !is.na(lat)) %>%
+	unique
+
+# display the first few results only
+head(locs)
+
+```
+
+Below we are using ALA4R again, but now configured to get data from web services running in Sweden. Here, we just get a count of total number of hits for a specific butterfly species.
+
+```{r, message=FALSE}
+
+# configure ALA4R to use Swedish servers
+# NB: these servers only accessible from within the Museum's network
+server_config <- getOption("ALA4R_server_config")
+
+server_config$base_url_biocache <- "http://testgbif.nrm.se/biocache-service/"
+
+options(ALA4R_server_config = server_config)
+
+occ_count <- 
+	occurrences(
+		record_count_only = TRUE,
+		taxon = "Micropterix aureatella",
+		download_reason_id = 10
+	)
+
+print(occ_count)
+
+```
+
+Using ALA4R configured to get data from web services running in Scotland and examples getting data from some other nations in Europe.
+
+```{r, message=FALSE}
+
+library(ALA4R)
+
+# configure ALA4R to use servers in another land
+
+# first read the settings used
+server_config <- getOption("ALA4R_server_config")
+
+# then change one specific setting
+
+#server_config$base_url_biocache <- "http://biocache.ala.org.au/ws/"
+#server_config$base_url_biocache <- "http://testgbif.nrm.se/biocache-service/"
+#server_config$base_url_biocache <- "http://datos.gbif.es/biocache-service/"
+#server_config$base_url_biocache <- "http://recherche-ws.gbif.fr/"
+server_config$base_url_biocache <- "http://records-ws.als.scot/"
+
+# set the new configuration to activate it
+options(ALA4R_server_config = server_config)
+
+# now, using the package will request data using the new config
+
+term <- "Apus apus"
+occ_count <- 
+	occurrences(
+		record_count_only = TRUE,
+		taxon = term,
+		download_reason_id = 10
+	)
+
+print(paste("Service", server_config$base_url_biocache, 
+			"reports a count of: ", occ_count))
+
+
+```
+
+
+## Getting data directly from a Web API
+
+Take a look at the web page here:
+
+http://herbarium.nrm.se
+
+It serves data from the botanical collections at the museum.
+
+How can we retrieve data from this Web API using R packages?
+
+- rvest
+- httr
+- jsonlite
+
+Read tutorial here first:
+
+- https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html
+- https://cran.r-project.org/web/packages/jsonlite/vignettes/json-apis.html
+
+### Solution
+
+This can be a challenging task as any API is difficult to use without official API documentation, and links to the documentation was not provided in this exercise. In this situation, what can be done? We can contact the API designer and ask for public documentation, of course. While waiting for this to be provided we can see what we can achieve on our own.
+
+We can have a look at the web pages and figure out some things by inspecting what is available. 
+We can see that the "start page" reports some statistics for the collection. There is also pages that provide search functionality for the collection data.
+
+There is some documentation at http://herbarium.nrm.se/howto/ but it doesn't describe the API in great detail, just how to use the web user interface for doing a search. 
+
+However, this explanation provides some guidance for intended usage and explains the search terms used in the two types of searches exposed through the web user interface.
+
+### Specimen search
+
+About the "specimen search", it says:
+
+- "You can only search for scientific names, not common names"
+- Specimen with types are indicated with TYPE
+- You can use locality or colletor when searching for specimen
+- The search field accepts special syntax: "search for a phrase" and then putting * at the end of a term signifies a prefix query
+
+Try to make a search and inspect the results. There seems to be a way to get to details for search hits by using links like  `http://herbarium.nrm.se/specimens/S09-36305`
+
+### Taxon search
+
+About the "genus/species search", it says:
+
+- Use it to find which species or genera the herbarium collection contains
+- This search will tell you if there are any specimens or types of the species in the herbarium.
+- This search tells you the current name of a species in this collection.
+
+Try to make a search and inspect the results. There seems to be a way to get to details for search hits by using links like `http://herbarium.nrm.se/species/50018102`.
+
+### Functions for accessing data
+
+This means that accessing the data from R could be provided through some functions for searching the herbarium collection:
+
+- **statistics** - provides the overall stats by scraping the web page labelled "Start"
+- **specimen** - retrieves search results for the specimen search
+- **specimen_details** - retrieves details given the "Reg. no", ie http://herbarium.nrm.se/specimens/S09-36305
+- **species** - retrieves search results for the "genus/species" search
+- **species_details** - retrieves details given the species name identifier, ie http://herbarium.nrm.se/species/50147618
+
+To create these functions, you first need to figure out how to retrieve the data from the service and also understandin which format the data is being provided. 
+
+### Investigating API calls
+
+One way of doing this is to use your browser to make a search through the web page at http://herbarium.nrm.se and activate the "network view", which will show what requests the browser is sending to the API that delivers the data.
+
+That way, we may be able to figure out some API endpoints to get structured data in JSON or we could consider to scrape the site for HTML data if there are no other ways to get to it in JSON or XML. It is always nicer to use an API instead of scraping, because per definition, an API is intended to be stable over time (and versioned, and documented) while a web page can change from day to day. Still, using data from the web may involve both those approaches. 
+
+So, let's start with scraping data from HTML. 
+
+First, We want to retrieve the statistics provided at the "start" page of the herbarium web site.
+
+```{r, , message=FALSE, cache=FALSE, fig.width=10}
+
+library(httr)
+#install.packages("tidyverse")
+library(tidyverse)
+library(rvest)
+
+BASE <- "http://herbarium.nrm.se"
+
+# request data from the start page
+stats <- GET(BASE)
+
+# pick out the first table on the page
+res <- 
+	content(stats) %>%
+	html_nodes(".table") %>%
+	html_table(header = TRUE) %>%
+	`[[`(1)
+
+names(res)[1] <- "Collection"
+
+# display the results
+res
+
+```
+
+The approach above can be wrapped into a function which can be called herbarium_statistics. This function can be documented and error handling can be provided and it can be put into a package along with other relevant function and then be shared for wider use, providing simple access to the herbarium data for R users.
+
+As you can see the information can be parsed from the HTML in a fairly succint and straight forward way. However, for it to be be treated properly as numerical data, for example for plotting purposes, the data needs to be cleaned up and parsed into the relevant types etc.
+
+### Some wrangling and plotting
+
+Here are some steps that process the table so that it can be plotted as a graph. This step involves wrangling the data, including pivoting operations and is a bit involved but demonstrates usage of several wrangling techniques that may be quite useful in various data wrangling scenarios.
+
+```{r, message=FALSE, cache=FALSE, fig.width=10}
+
+# utility fcns for cleaning the data and converting it
+
+trim_ws <- function(x) 
+	as.numeric(gsub("\\s+", "", x))
+
+parse_percent <- function(x) 
+	as.numeric(gsub("%", "", x, fixed = TRUE)) / 100
+
+# clean the data
+stats <- 
+	as_data_frame(res) %>%
+	# parse the text data and convert to numerical
+	mutate(
+		total = trim_ws(`Total number`),
+		registered = trim_ws(Registered),
+		types = trim_ws(`Types registered`),
+		prop = parse_percent(Proportion)		
+	) %>%
+	# order the collections by the totals
+	arrange(desc(total))
+
+# at this point we'd like to wrangle the data into the
+# format we require it to be in for our use case, say in this
+# case a specific format suitable for allowing trellised plotting
+# with ggplot, so for that purpose we like series to run across rows
+# but we like values and labels to run across columns
+
+# we'd like to have something like this
+#
+#           Collection   Variable          VarName   Value     Label
+#                <chr>      <chr>            <chr>   <chr>     <chr>
+# 1    Vascular plants      total     Total number 2950000 2 950 000
+# 2         Bryophytes      total     Total number  720000   720 000
+# 3  Fungi and lichens      total     Total number  670000   670 000
+# 4              Algae      total     Total number   94000    94 000
+#
+# so we will show how to use the "gather" and "spread" functions 
+# of tidyr to acheive this kind of transformation
+
+# first make a "thin" format for the stats
+df <- 
+	stats %>% 
+	filter(Collection != "Total") %>% 
+	gather(Variable, Value, 
+				 total, registered, prop, types, 
+				 `Total number`, Registered, Proportion, `Types registered`)
+
+# pick out only the labels
+df_labels <- 
+	df %>% 
+	filter(Variable %in% c("Total number", "Registered", "Proportion", "Types registered")) %>%
+	select(Collection, VarName = Variable, VarLabel = Value)
+
+# pick out the numbers
+df_numbers <-
+	df %>% 
+	filter(Variable %in% c("total", "registered", "prop", "types")) %>%
+	select(Variable, Value = as.numeric(Value))
+
+# combine the two datasets, side-by-side
+out <- 
+	bind_cols(df_labels, df_numbers) %>%
+	mutate(Value = as.numeric(Value)) %>%
+	select(Collection, Variable, VarName, Value, Label = VarLabel)
+
+# plot the data as a horizontal bar graph
+groups <- 
+	factor(x = out$VarName,
+		levels = c("Registered", "Types registered", "Proportion", "Total number"),
+		ordered = TRUE)
+
+out$Groups <- groups
+
+ggplot(out, aes(Collection, Value, fill = Groups, label = Label)) + 
+	coord_flip() + 
+	facet_grid(. ~ Groups, scales = "free") +
+	geom_text(position = position_dodge(width = 1)) +
+	geom_bar(stat = "identity") + 
+	geom_text(color = "gray80", position = position_dodge(width = 1)) +
+	guides(fill = FALSE) +
+	xlab(label = NULL) +
+	ylab(label = NULL) +
+	theme_minimal()
+
+```
+
+### Accessing JSON data from API endpoints
+
+So far we haven't been using the API providing data to the web pages. We haven't seen the API documentation so we will now proceed to see if we can figure out how the API could be used while we are waiting for the API specification to be published in public.
+
+In our attempt to figure out how to use the API we start with using the browsers "Network View".
+
+If you load the web page at http://herbarium.nrm.se in your browser while looking at the "network view" in the browser, you will see that your browser loads some javascript - which you can inspect and see that it has a reference to `http://herbarium.nrm.se/api/countries". So we then have information on one of the APIs routes, which appear to take a parameter for the continent. 
+
+On the search page, the continents are listed. We can start by using just one of the continents to see if we can issue a successful call to the API.
+
+```{r, message=FALSE}
+
+library(httr)
+library(rvest)
+
+BASE <- "http://herbarium.nrm.se"
+
+get_countries_africa <- 
+	GET(BASE, path = "/api/countries", query = list(continent = "Africa"))
+
+countries <- unlist(content(get_countries_africa))
+
+# print the first few countries
+head(countries)
+
+```
+
+Looking at the source for http://herbarium.nrm.se/search/specimens there is a mention of `/api/search/specimens`, so there seems to way retrieve data from that endpoint, too.
+
+```{r, message=FALSE}
+
+# we create a function to fetch the total nr of records
+herbarium_total <- function() {
+	res <- content(GET(BASE, path = "/api/search/specimens"))
+	return (res$recordsTotal)
+}
+
+# use it
+herbarium_total()
+
+```
+
+We suspect that this API endpoint will allow us to issue searches for specimens using the various parameters described on the web page and want to provide an automatable way to do this, returning data in a format well suited for further processing in R.
+
+Put in some values for the parameters at http://herbarium.nrm.se/search/specimens and issue a search, then look at the Network View in the Parameters section to pick out the query parameters and then try to reproduce the search using `httr`.
+
+```{r}
+
+search_specimen <- function(query = "blåklocka", 
+	name = "", family = "", continent = "all", group = "", 
+	year = "", createddate = "",
+	collector = "", collectornumber = "",
+	images = FALSE, type = FALSE,
+	start = 0, length = 10) {
+	
+	specimens <- GET(paste0("http://herbarium.nrm.se/api/search/specimens",
+	"?draw=0&columns[0][data]=bilder&columns[0][name]=&columns[0][searchable]=true&columns[0][orderable]=false&columns[0][search][value]=&columns[0][search][regex]=false&columns[1][data]=registreringsnr&columns[1][name]=&columns[1][searchable]=true&columns[1][orderable]=true&columns[1][search][value]=&columns[1][search][regex]=false&columns[2][data]=namn&columns[2][name]=&columns[2][searchable]=true&columns[2][orderable]=true&columns[2][search][value]=&columns[2][search][regex]=false&columns[3][data]=land&columns[3][name]=&columns[3][searchable]=true&columns[3][orderable]=true&columns[3][search][value]=&columns[3][search][regex]=false&columns[4][data]=provins&columns[4][name]=&columns[4][searchable]=true&columns[4][orderable]=true&columns[4][search][value]=&columns[4][search][regex]=false&columns[5][data]=lokal&columns[5][name]=&columns[5][searchable]=true&columns[5][orderable]=true&columns[5][search][value]=&columns[5][search][regex]=false&columns[6][data]=aar_span&columns[6][name]=&columns[6][searchable]=true&columns[6][orderable]=true&columns[6][search][value]=&columns[6][search][regex]=false&columns[7][data]=insamlare&columns[7][name]=&columns[7][searchable]=true&columns[7][orderable]=true&columns[7][search][value]=&columns[7][search][regex]=false&columns[8][data]=insamlingsnummer&columns[8][name]=&columns[8][searchable]=true&columns[8][orderable]=true&columns[8][search][value]=&columns[8][search][regex]=false&order[0][column]=2&order[0][dir]=asc&search[value]=&search[regex]=false&"), 
+		query = list(
+			start = start, 
+			length = length, 
+			query = query,
+			name = name,
+			family = family,
+			continent = continent,
+			group = group,
+			year = year,
+			collector = collector,
+			collectornumber = collectornumber,
+			createddate = createddate,
+			images = images,
+			type = type
+		)
+	)
+	
+	hits <- content(specimens)
+	
+	message("Found in total ", hits$recordsTotal, " hits")
+	
+	library(purrr)
+	library(dplyr)
+	library(tibble)
+	
+	dfs <- map(hits$data, as_data_frame)
+	map_df(dfs, bind_rows)
+
+}
+
+search_specimen()
+search_specimen(query = "vitsippa")
+
+```
+
+Now we can repeat the same procedure for the "/api/search/spieces" endpoint.
+
+```{r, message=FALSE}
+
+search_species <- function(query = "Anemone nemorosa", 
+	include_synonyms = TRUE,
+	start = 0, length = 10) {
+	
+	species <- GET(paste0("http://herbarium.nrm.se/api/search/spieces",													"?draw=1&columns[0][data]=namn&columns[0][name]=&columns[0][searchable]=true&columns[0][orderable]=true&columns[0][search][value]=&columns[0][search][regex]=false&columns[1][data]=familj&columns[1][name]=&columns[1][searchable]=true&columns[1][orderable]=true&columns[1][search][value]=&columns[1][search][regex]=false&order[0][column]=0&order[0][dir]=asc&search[value]=&search[regex]=false"), 
+		query = list(
+			start = start, 
+			length = length, 
+			query = query,
+			nosyn = include_synonyms
+		)
+	)
+	
+	hits <- content(species)
+	
+	message("Found in total ", hits$recordsTotal, " hits")
+	
+	library(purrr)
+	library(dplyr)
+	library(tibble)
+	
+	dfs <- map(hits$data, as_data_frame)
+	map_df(dfs, bind_rows)
+
+}
+
+search_species()
+search_specimen(query = "vitsippa")
+
+```
+
+It also seems that the results returned from the web pages often include links like `http://herbarium.nrm.se/species/50000230` so we can provide a method for harversting also those details.
+
+```{r, message=FALSE}
+
+herbarium_species_details <- function(id) {
+	
+	htm <- content(GET(BASE, path = paste0("species", "/", id)))
+	
+	id <- 
+		htm %>% 
+		html_nodes(".panel-heading") %>% 
+		html_text(trim = TRUE)
+	
+	heading <- 
+		htm %>%
+		html_nodes(".panel-body") %>% 
+		html_nodes(".background") %>%
+		html_text(trim = TRUE)
+	
+	records <- 
+		htm %>%
+		html_nodes(".panel-body") %>% 
+		html_nodes(xpath = "//div[contains(@class, 'col-sm-9') or contains(@class ,'col-lg-9')]") %>%
+		html_text(trim = TRUE)
+	
+	
+	res <- data_frame(id, heading, records)
+	
+	res
+}
+
+herbarium_species_details(50000230)
+
+
+```
+
+Finally, it is possible to get the same information for a specimen, using "http://herbarium.nrm.se/specimens/S11-19913"
+
+```{r, message=FALSE}
+
+herbarium_specimen_details <- function(id) {
+	
+	htm <- content(GET(BASE, path = paste0("specimens", "/", id)))
+	
+	id <- 
+		htm %>% 
+		html_nodes(".panel-heading") %>% 
+		html_text(trim = TRUE)
+	
+	heading <- 
+		htm %>%
+		html_nodes(".panel-body") %>% 
+		html_nodes(".background") %>%
+		html_text(trim = TRUE)
+	
+	records <- 
+		htm %>%
+		html_nodes(".panel-body") %>% 
+		html_nodes(xpath = "//div[contains(@class, 'col-sm-9') or contains(@class ,'col-lg-9')]") %>%
+		html_text(trim = TRUE)
+	
+	footer <- 
+		htm %>%
+		html_nodes(".panel-footer") %>%
+		html_text(trim = TRUE)
+	
+	res <- data_frame(id, heading, records)
+	
+	bind_rows(res, data_frame(id, heading = "Footer", records = footer))
+}
+
+#herbarium_specimen_details(1351068)
+herbarium_specimen_details("S11-19913")
+
+```
+
+### Next steps - an R package for the Herbarium data?
+
+With those functions in an R package, along with documentation and vignettes to provide tutorials showing concrete use cases, the Herbarium data could be accessed conveniently from R. The core functions could be:
+
+- **statistics** - provides the overall stats by scraping the web page labelled "Start"
+- **specimen** - retrieves search results for the specimen search
+- **specimen_details** - retrieves details given the "Reg. no", ie http://herbarium.nrm.se/specimens/S09-36305
+- **species** - retrieves search results for the "genus/species" search
+- **species_details** - retrieves details given the species name identifier, ie http://herbarium.nrm.se/species/50147618
+
+Wrapper functions and vignettes could show users how to access the data from this web API. However, it would probably be best to hold off on such efforts to create an R package, until the developers that created http://herbarium.nrm.se provide API reference documentation.
